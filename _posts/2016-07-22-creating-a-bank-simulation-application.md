@@ -145,7 +145,7 @@ my code. As I said, I had almost 0 experience devloping this kind of app
 with Rails, and I coded stuff up as I came up with it. 
 
 The lack of information I stumbled upon is what has inspired me to write
-up this "tutorial" series. Partly, I'm hopingt here's people out there
+up this "tutorial" series. Partly, I'm hoping there's people out there
 looking to develop bank simulation apps in rails and this tutorial ends
 up being exactly what they are looking for, but really, I'm just trying
 to share a bit of my knowledge hoping maybe parts of this tutorial will
