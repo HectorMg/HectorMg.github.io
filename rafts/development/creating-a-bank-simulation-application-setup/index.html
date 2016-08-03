@@ -1,0 +1,515 @@
+
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+
+<meta charset="utf-8">
+
+
+
+<!-- begin SEO -->
+
+
+
+
+
+
+
+
+
+<title>            Creating a bank simulation application: Setup      HectorMg      </title>
+
+
+
+
+
+
+
+<meta property="og:locale" content="en-US">
+<meta property="og:site_name" content="HectorMg">
+<meta property="og:title" content="Creating a bank simulation application: Setup">
+
+
+
+
+  <meta property="og:description" content="Hey guys! Welcome to part two of my bank simulation application series.In this post I’ll guide you guys through some basic setup for theapplication. I’ll keep this post short and simple, and I won’t go toodeep into the details or explaining how and why certain things workbecause I assume you either already have some experience using Ruby onRails or its something that you can easily run a Google search on.">
+
+
+
+  <meta name="twitter:site" content="@hectormg_wake">
+  <meta name="twitter:title" content="Creating a bank simulation application: Setup">
+  <meta name="twitter:description" content="Hey guys! Welcome to part two of my bank simulation application series.In this post I’ll guide you guys through some basic setup for theapplication. I’ll keep this post short and simple, and I won’t go toodeep into the details or explaining how and why certain things workbecause I assume you either already have some experience using Ruby onRails or its something that you can easily run a Google search on.">
+  <meta name="twitter:url" content="">
+
+  
+    <meta name="twitter:card" content="summary">
+    
+  
+
+  
+
+
+
+  
+
+  
+
+
+
+
+
+  <meta property="og:type" content="article">
+  <meta property="article:published_time" content="2016-07-22T00:00:00-05:00">
+
+
+
+
+
+
+
+
+  <script type="application/ld+json">
+    {
+      "@context" : "http://schema.org",
+      "@type" : "Person",
+      "name" : "Hector Morales",
+      "url" : null,
+      "sameAs" : null
+    }
+  </script>
+
+
+
+
+
+
+<!-- end SEO -->
+
+
+<link href="/feed.xml" type="application/atom+xml" rel="alternate" title="HectorMg Feed">
+
+<!-- http://t.co/dKP3o1e -->
+<meta name="HandheldFriendly" content="True">
+<meta name="MobileOptimized" content="320">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<script>
+  document.documentElement.className = document.documentElement.className.replace(/\bno-js\b/g, '') + ' js ';
+</script>
+
+<!-- For all browsers -->
+<link rel="stylesheet" href="/assets/css/main.css">
+
+<meta http-equiv="cleartype" content="on">
+    <!-- start custom head snippets -->
+
+<!-- insert favicons. use http://realfavicongenerator.net/ -->
+
+<!-- end custom head snippets -->
+  </head>
+
+  <body>
+
+    <!--[if lt IE 9]>
+<div class="notice--danger align-center" style="margin: 0;">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.</div>
+<![endif]-->
+    
+
+<div class="masthead">
+  <div class="masthead__inner-wrap">
+    <div class="masthead__menu">
+      <nav id="site-nav" class="greedy-nav">
+        <button><div class="navicon"></div></button>
+        <ul class="visible-links">
+          <li class="masthead__menu-item masthead__menu-item--lg"><a href="/">HectorMg</a></li>
+          
+        </ul>
+        <ul class="hidden-links hidden"></ul>
+      </nav>
+    </div>
+  </div>
+</div>
+
+    
+
+
+
+
+
+<div id="main" role="main">
+  
+
+
+  <div class="sidebar sticky">
+  
+
+
+
+<div itemscope itemtype="http://schema.org/Person">
+
+  <div class="author__avatar">
+    
+    	<img src="/images/bio-photo.jpg" class="author__avatar" alt="Hector Morales">
+    
+  </div>
+
+  <div class="author__content">
+    <h3 class="author__name">Hector Morales</h3>
+    <p class="author__bio">Software developer from México.</p>
+  </div>
+
+  <div class="author__urls-wrapper">
+    <button class="btn btn--inverse">Follow</button>
+    <ul class="author__urls social-icons">
+      
+        <li><i class="fa fa-fw fa-map-marker" aria-hidden="true"></i> Monterrey, México</li>
+      
+      
+      
+        <li><a href="mailto:hectormgdev@gmail.com"><i class="fa fa-fw fa-envelope-square" aria-hidden="true"></i> Email</a></li>
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+        <li><a href="https://github.com/http://github.com/hectormg"><i class="fa fa-fw fa-github" aria-hidden="true"></i> Github</a></li>
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+    </ul>
+  </div>
+</div>
+
+  
+  </div>
+
+
+  <article class="page" itemscope itemtype="http://schema.org/CreativeWork">
+    <meta itemprop="headline" content="Creating a bank simulation application: Setup">
+    <meta itemprop="description" content="Hey guys! Welcome to part two of my bank simulation application series.In this post I’ll guide you guys through some basic setup for theapplication. I’ll keep this post short and simple, and I won’t go toodeep into the details or explaining how and why certain things workbecause I assume you either already have some experience using Ruby onRails or its something that you can easily run a Google search on.">
+    <meta itemprop="datePublished" content="July 22, 2016">
+    
+
+    <div class="page__inner-wrap">
+      
+        <header>
+          <h1 class="page__title" itemprop="headline">Creating a bank simulation application: Setup
+</h1>
+          
+            <p class="page__meta"><i class="fa fa-clock-o" aria-hidden="true"></i> 
+
+
+  
+	  3 minute read
+	
+</p>
+          
+        </header>
+      
+
+      <section class="page__content" itemprop="text">
+        <p>Hey guys! Welcome to part two of my bank simulation application series.
+In this post I’ll guide you guys through some basic setup for the
+application. I’ll keep this post short and simple, and I won’t go too
+deep into the details or explaining how and why certain things work
+because I assume you either already have some experience using Ruby on
+Rails or its something that you can easily run a Google search on.</p>
+
+<h2 id="setup">Setup</h2>
+
+<p>First of all, I’ll create a git repository for my new project. I use
+Github, so I’ll just create my new repository which you can follow
+<a href="https://github.com/HectorMg/bank-simulation-app.git">here</a>. I named the
+repo “bank-simulation-app”, because I think that pretty much sums the
+project up.</p>
+
+<p>I’ll be using Rails 5 for this project, and if you plan on following through, I
+suggest you do the same. Make sure Rails 5 is installed on your machine
+before creating your new rails project. For information on how to
+install Ruby on Rails 5, I suggest you visit <a href="http://rubyonrails.org">the official Ruby on Rails
+website</a>.</p>
+
+<p>Now, I’ll create a new rails application in my local machine.
+I’m using the <code class="highlighter-rouge">-T</code> tag to create the project without a test directory,
+not because I’m not testing, but because I prefer RSpec over Rails’
+default Test::Unit.</p>
+
+<div class="language-bash highlighter-rouge"><pre class="highlight"><code><span class="gp">$ </span>rails new -T bank-simulation-app
+</code></pre>
+</div>
+
+<p>Then I’ll navigate to my new rails app, initialize it as a git
+repository, and add remote origin to link it to my Github repo. While
+I’m here, I’ll go ahead and push my whole local repo to the remote
+master branch.</p>
+
+<div class="language-bash highlighter-rouge"><pre class="highlight"><code><span class="gp">$ </span><span class="nb">cd </span>bank-simulation-app/
+<span class="gp">$ </span>git init
+<span class="gp">$ </span>git remote add origin https://github.com/HectorMg/bank-simulation-app.git
+<span class="gp">$ </span>git add .
+<span class="gp">$ </span>git commit -m <span class="s2">"Initializes repository"</span>
+<span class="gp">$ </span>git push origin master
+</code></pre>
+</div>
+
+<p>Now that my basic rails app is up on Github, I’ll create a new branch
+called <code class="highlighter-rouge">setup</code> where I’ll add some configuration.</p>
+
+<div class="language-bash highlighter-rouge"><pre class="highlight"><code><span class="gp">$ </span>git checkout -b setup
+</code></pre>
+</div>
+
+<p>The first file I’ll be modifying is the Gemfile.</p>
+
+<h4 id="gemfile">Gemfile</h4>
+<div class="language-ruby highlighter-rouge"><pre class="highlight"><code><span class="n">source</span> <span class="s1">'https://rubygems.org'</span>
+
+<span class="n">gem</span> <span class="s1">'rails'</span><span class="p">,</span> <span class="s1">'~&gt; 5.0.0'</span>
+<span class="n">gem</span> <span class="s1">'sqlite3'</span>
+<span class="n">gem</span> <span class="s1">'puma'</span><span class="p">,</span> <span class="s1">'~&gt; 3.0'</span>
+<span class="n">gem</span> <span class="s1">'sass-rails'</span><span class="p">,</span> <span class="s1">'~&gt; 5.0'</span>
+<span class="n">gem</span> <span class="s1">'uglifier'</span><span class="p">,</span> <span class="s1">'&gt;= 1.3.0'</span>
+<span class="n">gem</span> <span class="s1">'coffee-rails'</span><span class="p">,</span> <span class="s1">'~&gt; 4.2'</span>
+<span class="n">gem</span> <span class="s1">'therubyracer'</span><span class="p">,</span> <span class="ss">platforms: :ruby</span>
+<span class="n">gem</span> <span class="s1">'jquery-rails'</span>
+<span class="n">gem</span> <span class="s1">'turbolinks'</span><span class="p">,</span> <span class="s1">'~&gt; 5'</span>
+<span class="n">gem</span> <span class="s1">'jbuilder'</span><span class="p">,</span> <span class="s1">'~&gt; 2.5'</span>
+
+
+<span class="n">group</span> <span class="ss">:development</span><span class="p">,</span> <span class="ss">:test</span> <span class="k">do</span>
+  <span class="n">gem</span> <span class="s1">'byebug'</span><span class="p">,</span> <span class="ss">platform: :mri</span>
+  <span class="n">gem</span> <span class="s1">'rspec-rails'</span>
+  <span class="n">gem</span> <span class="s1">'factory_girl_rails'</span>
+  <span class="n">gem</span> <span class="s1">'shoulda-matchers'</span>
+<span class="k">end</span>
+
+<span class="n">group</span> <span class="ss">:development</span> <span class="k">do</span>
+  <span class="n">gem</span> <span class="s1">'web-console'</span>
+  <span class="n">gem</span> <span class="s1">'listen'</span><span class="p">,</span> <span class="s1">'~&gt; 3.0.5'</span>
+  <span class="n">gem</span> <span class="s1">'spring'</span>
+  <span class="n">gem</span> <span class="s1">'spring-watcher-listen'</span><span class="p">,</span> <span class="s1">'~&gt; 2.0.0'</span>
+<span class="k">end</span>
+
+<span class="n">gem</span> <span class="s1">'tzinfo-data'</span><span class="p">,</span> <span class="ss">platforms: </span><span class="p">[</span><span class="ss">:mingw</span><span class="p">,</span> <span class="ss">:mswin</span><span class="p">,</span> <span class="ss">:x64_mingw</span><span class="p">,</span> <span class="ss">:jruby</span><span class="p">]</span>
+</code></pre>
+</div>
+<p>Other than eliminating unnecessary comments and a couple of the default
+gems, I only kept what I think is necessary. Make sure to uncomment the
+‘therubyracer’ gem, and if you plan on running tests with RSpec, go
+ahead and add the three gems I added to the development/test group.</p>
+
+<p>I’ll be writing tests for my project, however, I won’t go through any of that
+in my blog posts, so if you wish to test your application, you can look
+through my <a href="http://github.com/HectorMg/bank-simulation-app">repo</a> and
+try to understand (and replicate) my testing suite as it is updated in
+each branch.</p>
+
+<p>Even though I won’t be walking you through the actual testing, I’ll
+still walk you through the RSpec setup I’ll be using. First, we’ll go
+ahead and install RSpec.</p>
+
+<div class="language-bash highlighter-rouge"><pre class="highlight"><code><span class="gp">$ </span>rails generate rspec:install
+</code></pre>
+</div>
+
+<p>Then I’ll add the shoulda-matcher gem’s configuration to the
+<code class="highlighter-rouge">rails_helper.rb</code> file.</p>
+
+<h4 id="specrailshelperrb">spec/rails_helper.rb</h4>
+<div class="language-ruby highlighter-rouge"><pre class="highlight"><code><span class="no">RSpec</span><span class="p">.</span><span class="nf">configure</span> <span class="k">do</span> <span class="o">|</span><span class="n">config</span><span class="o">|</span>
+  <span class="p">.</span>
+  <span class="nf">.</span>
+  <span class="o">.</span>
+  <span class="no">Shoulda</span><span class="o">::</span><span class="no">Matchers</span><span class="p">.</span><span class="nf">configure</span> <span class="k">do</span> <span class="o">|</span><span class="n">config</span><span class="o">|</span>
+    <span class="n">config</span><span class="p">.</span><span class="nf">integrate</span> <span class="k">do</span> <span class="o">|</span><span class="n">with</span><span class="o">|</span>
+      <span class="n">with</span><span class="p">.</span><span class="nf">test_framework</span> <span class="ss">:rspec</span>
+      <span class="n">with</span><span class="p">.</span><span class="nf">library</span> <span class="ss">:rails</span>
+    <span class="k">end</span>
+  <span class="k">end</span>
+<span class="k">end</span>
+</code></pre>
+</div>
+
+<p>That’s pretty much it for the project’s initial setup! In the next post
+I’ll be talking about the application and we’ll start the actual
+development!</p>
+
+<p>I hope you were able to follow along with the initial setup, if you have
+any questions, please go ahead and email me, or if you think there’s a
+problem I’ve missed, go ahead and open up an issue on <a href="https://github.com/HectorMg/bank-simulation-app/issues">Github</a>!</p>
+
+<p>Either way, if you’d like, you can clone my working repository up to
+this point and follow the rest of this series from there!</p>
+
+<p><code class="highlighter-rouge">$ git clone https://github.com/HectorMg/bank-simulation-app.git -b setup</code></p>
+
+        
+      </section>
+
+      <footer class="page__meta">
+        
+        
+
+
+
+
+  
+
+
+
+
+
+
+  
+  
+  
+
+  <p class="page__taxonomy">
+    <strong><i class="fa fa-fw fa-folder-open" aria-hidden="true"></i> Categories: </strong>
+    <span itemprop="keywords">
+    
+      
+      
+      <a href="/categories/#development" class="page__taxonomy-item" rel="tag">development</a>
+    
+    </span>
+  </p>
+
+
+        
+          <p class="page__date"><strong><i class="fa fa-fw fa-calendar" aria-hidden="true"></i> Updated:</strong> <time datetime="2016-07-22T00:00:00-05:00">July 22, 2016</time></p>
+        
+      </footer>
+
+      
+
+<section class="page__share">
+  
+    <h4 class="page__share-title">Share on</h4>
+  
+
+  <a href="https://twitter.com/intent/tweet?text=/development/creating-a-bank-simulation-application-setup/" class="btn btn--twitter" title="Share on Twitter"><i class="fa fa-fw fa-twitter" aria-hidden="true"></i><span> Twitter</span></a>
+
+  <a href="https://www.facebook.com/sharer/sharer.php?u=/development/creating-a-bank-simulation-application-setup/" class="btn btn--facebook" title="Share on Facebook"><i class="fa fa-fw fa-facebook" aria-hidden="true"></i><span> Facebook</span></a>
+
+  <a href="https://plus.google.com/share?url=/development/creating-a-bank-simulation-application-setup/" class="btn btn--google-plus" title="Share on Google Plus"><i class="fa fa-fw fa-google-plus" aria-hidden="true"></i><span> Google+</span></a>
+
+  <a href="https://www.linkedin.com/shareArticle?mini=true&url=/development/creating-a-bank-simulation-application-setup/" class="btn btn--linkedin" title="Share on LinkedIn"><i class="fa fa-fw fa-linkedin" aria-hidden="true"></i><span> LinkedIn</span></a>
+</section>
+
+      
+
+
+  <nav class="pagination">
+    
+      <a href="#" class="pagination--pager disabled">Previous</a>
+    
+    
+      <a href="/development/creating-a-bank-simulation-application/" class="pagination--pager" title="Creating a bank simulation application: Introduction
+">Next</a>
+    
+  </nav>
+
+    </div>
+
+    
+  </article>
+
+  
+  
+    <div class="page__related">
+      
+        <h4 class="page__related-title">You May Also Enjoy</h4>
+      
+      <div class="grid__wrapper">
+        
+          
+
+
+
+
+
+<div class="grid__item">
+  <article class="archive__item" itemscope itemtype="http://schema.org/CreativeWork">
+    
+    <h2 class="archive__item-title" itemprop="headline">
+      
+        <a href="/development/creating-a-bank-simulation-application/" rel="permalink">Creating a bank simulation application: Introduction
+</a>
+      
+    </h2>
+    
+      <p class="page__meta"><i class="fa fa-clock-o" aria-hidden="true"></i> 
+
+
+  
+	  6 minute read
+	
+</p>
+    
+    <p class="archive__item-excerpt" itemprop="description">Hey guys! This is the first post in a new series of blog posts dedicated
+to sharing my experience with building bank simulation applications in
+the Ruby on R...</p>
+  </article>
+</div>
+        
+      </div>
+    </div>
+  
+</div>
+
+    <div class="page__footer">
+      <footer>
+        <!-- start custom footer snippets -->
+
+<!-- end custom footer snippets -->
+        
+
+<div class="page__footer-follow">
+  <ul class="social-icons">
+    
+      <li><strong>Follow:</strong></li>
+    
+    
+      <li><a href="https://twitter.com/hectormg_wake"><i class="fa fa-fw fa-twitter-square" aria-hidden="true"></i> Twitter</a></li>
+    
+    
+    
+      <li><a href="http://github.com/http://github.com/hectormg"><i class="fa fa-fw fa-github" aria-hidden="true"></i> GitHub</a></li>
+    
+    
+    <li><a href="/feed.xml"><i class="fa fa-fw fa-rss-square" aria-hidden="true"></i> Feed</a></li>
+  </ul>
+</div>
+
+<div class="page__footer-copyright">&copy; 2016 Hector Morales. Powered by <a href="http://jekyllrb.com" rel="nofollow">Jekyll</a> &amp; <a href="https://mademistakes.com/work/minimal-mistakes-jekyll-theme/" rel="nofollow">Minimal Mistakes</a>.</div>
+      </footer>
+    </div>
+
+    <script src="/assets/js/main.min.js"></script>
+
+
+
+
+
+  </body>
+</html>
+
