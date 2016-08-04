@@ -1,7 +1,7 @@
 ---
 
 layout: single
-title: Creating a bank simulation application&#58; Initial Models
+title: Creating a bank simulation application \#3&#58; Initial Models
 category: development
 ---
 
@@ -10,7 +10,8 @@ general model structure as it is up to now. Along the way, I may change
 my mind and add or remove models or maybe change hierarchies or
 relationships, but worry not, since I'll blog throughout the development
 process, you'll know about any changes I end up making. Either way, you
-can follow my progess on this post in the `post-2` branch.
+can follow my progess on this post in the `initial-models` branch of my
+[Github repo](http://github.com/hectormg/bank-simulation-app).
 
 ## Hierarchical Overview
 The first model I want to include, which I think is up to now the most
@@ -133,8 +134,9 @@ end
 
 After migrating the database one more time with `$ rails db:migrate`,
 I'll create two classes in the models directory without creating tables
-for them in the database. These classes will be Bank and Company. Below
-are the three final classes for the Organizations family.
+for them in the database. These classes will be Bank and Company. I'll
+go through each of the new models next, and then we'll tie up a couple
+loose ends.
 
 #### app/models/organization.rb
 
@@ -145,6 +147,15 @@ class Organization < ApplicationRecord
   belongs_to :event
 end
 ```
+Starting with the organization model, I added some universal behavior in the
+form of AR validations. Before an organization is saved into
+the database, our model will validate that the organization's name is
+both present and unique. This means that an empty string (""), nil or
+repeated value in the name field will result in the instance object not
+being saved in the database. Finally, no matter what type of
+organization we instantiate, it will belong to a particular event,
+hence `belongs_to :event`.
+
 
 #### app/models/bank.rb
 
@@ -160,25 +171,7 @@ class Bank < Organization
 end
 ```
 
-#### app/models/company.rb
-
-```ruby
-class Company < Organization
-  validates :market, presence: true
-  validates :numerator, numericality: true
-end
-```
-
-Starting with the organization model, I added some universal behavior in the
-form of AR validations. Before an organization is saved into
-the database, our model will validate that the organization's name is
-both present and unique. This means that an empty string (""), nil or
-repeated value in the name field will result in the instance object not
-being saved in the database. Finally, no matter what type of
-organization we instantiate, it will belong to a particular event,
-hence `belongs_to :event`.
-
-The Bank model is a little simpler. The class inherits from
+The Bank model is a little more simple. The class inherits from
 Organization, and besides that, the only method I included in this
 model is a private method called `default_attributes`. This method simply memoizes the object's
 name attribute, so if it's not set as a parameter when built, it will be set to "The Bank" by
@@ -188,20 +181,34 @@ automatically when the event is created, but you can feel free to change the
 default name to anything you like, or simply omit this method and its
 call as an after_initialize callback.
 
-The Company model has validations of its own. Since companies are
+
+
+#### app/models/company.rb
+
+```ruby
+class Company < Organization
+  validates :market, presence: true
+  validates :numerator, numericality: true
+end
+```
+
+Unlike Bank, the Company model has validations of its own. Since companies are
 divided into four markets, they absolutely must include both market and
 numerator. Since the numerator is supposed to be an integer, I'll also
 validate for numericality (which, as stated earlier, validates for
 presence implicitly). Since there are eight companies and four
 markets in the particular case of the event I'm developing this app for, I'll assume that there
-should be two companies with each market and between those, they'll have
-1 and 2 as their numerator attribute. Having said this, I will not add
-validations to enforce this, since I'll be the one to code the method
+should be two companies with each market. Between those, they'll have
+1 and 2 as a value for their numerator attribute. 
+
+Having said this, I will not add
+validations to enforce a numerical limit or check for the markets of
+each company. Since I'll be the one to code the method
 that sets up the whole structure before the event, and I already know
-how it should be.
+how it should be, that would not be necessary.
 
 
-Finally, I make two slight additions to the Event model. We've already
+Finally, I made two slight additions to the Event model. We've already
 setup half of the relation in the Organization model by adding the
 `belongs_to :event` line, so we'll wrap it up on the Event side.
 
@@ -220,4 +227,41 @@ As you can see, I handle both models (Company and Bank) here. The
 Organization model already specified that an organization, whatever type
 it has, will belong to an event, but it doesn't specify the rest of the
 relation. An event will have many (in this case probably 8) companies,
-but it only really needs one bank. Thankfully, having made an STI
+but it only really needs one bank. Thankfully, having used an STI
+approach will allow for this simple distinction. 
+
+The `has_many :companies` line allows me to create companies through the
+actual Event instance like so: `instance_of_event.companies.create(name:
+"foo", market:"bar", numerator: 1)`. As you can see, I don't need to add
+`type: "Company"` as a parameter value because AR understands through
+STI that `instance_of_event.companies` stands for an Organization with `type: "Company"` and
+the bevior of the Company child class. That line will add the company to
+the Organizations database with all of its attributes, type "Company",
+and with an event_id that matches `instance_of_event`.
+
+The `has_one:bank` line, on the other hand, allows for a different yet much
+simpler instantiation. Whenever I need to instantiate an event's bank,
+thanks to the way the class is designed, I need only write
+`instance_of_event.create_bank`. 
+
+Of course, I could add a name, market,
+or even numerator, as they are part of the class that the Bank inherits
+from. However, since the validations for those attributes happen in a
+class at the same level as the Bank model, Bank doesn't inherit them, so
+they're completely optional. Combining that with my `default_attributes`
+callback, that single line of code will instantiate a Bank object, give
+it "The Bank" as a name, and save it in the database under the
+Organizations table, type "Bank", and the event_id belonging to
+`instance_of_event`.
+
+
+And, guess what! We're done with all these models for now! If you'd like
+to see what the tests I write for them look like, you can always see the
+project in Github. The specs for this post should be under the
+"initial-models" branch in the specs/models folders. As always, I
+encourage you to email me if you have any questions, or open up an Issue
+on the [Github repo](http://github.com/hectormg/bank-simulation-app) if
+there's anything you think can improve! 
+
+Stay tuned for post #3, as we'll start modelling the users for our
+bank simulation application!

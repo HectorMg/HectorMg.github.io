@@ -1,6 +1,6 @@
 ---
 layout: single
-title: Creating a bank simulation application&#58; Introduction
+title: Creating a bank simulation application \#1&#58; Introduction
 category: development
 ---
 
@@ -17,7 +17,7 @@ I decided to start this series, and why I thought it was relevant to
 share my knowledge and experience in developing this kind of
 application. If you're not interested in learning about why I'm doing
 this, and want to go straight to the meaty, technical process, go ahead
-and check out the [next post]({% post_url 2016-07-22-creating-a-bank-simulation-application-setup %}) in the series!
+and check out the [next post]({% post_url 2016-07-23-creating-a-bank-simulation-application-setup %}) in the series!
 
 
 ## Motivation
@@ -152,7 +152,7 @@ to share a bit of my knowledge hoping maybe parts of this tutorial will
 help or inspire others to help!
 
 That's it for my introductory rant, so make sure to check out the [next
-part of this series]({% post_url 2016-07-22-creating-a-bank-simulation-application-setup %}), where I'll talk about the app more in depth and
+part of this series]({% post_url 2016-07-23-creating-a-bank-simulation-application-setup %}), where I'll talk about the app more in depth and
 walk you through some setup.
 
 
